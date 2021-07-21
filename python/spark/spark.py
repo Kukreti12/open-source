@@ -1,35 +1,30 @@
 import pyspark
-from pyspark import SQLContext
-from pyspark.sql.types import StructType, StructField, IntegerType, FloatType, StringType
-from pyspark.sql.functions import udf
+from pyspark import SparkContext
+from pyspark.sql import SparkSession
+from datetime import datetime
 from pyspark.sql import Row
+from pyspark.sql.functions import sha2, col
+from pyspark.sql.functions import dayofweek
+sc = SparkContext()
+spark = SparkSession(sc)
 
+from pyspark.sql.types import StructType,StructField, StringType, IntegerType
+data2 = [("James","","Smith","36636","M",3000),
+    ("Michael","Rose","","40288","M",4000),
+    ("Robert","","Williams","42114","M",4000),
+    ("Maria","Anne","Jones","39192","F",4000),
+    ("Jen","Mary","Brown","","F",-1)
+  ]
 
-conf = pyspark.SparkConf() 
-
+schema = StructType([ \
+    StructField("firstname",StringType(),True), \
+    StructField("middlename",StringType(),True), \
+    StructField("lastname",StringType(),True), \
+    StructField("id", StringType(), True), \
+    StructField("gender", StringType(), True), \
+    StructField("salary", IntegerType(), True) \
+  ])
  
-sc = pyspark.SparkContext.getOrCreate(conf=conf)
-spark = SQLContext(sc)
-
-schema = StructType([
-    StructField("sales", FloatType(),True),    
-    StructField("employee", StringType(),True),
-    StructField("ID", IntegerType(),True)
-])
-
-data = [[ 10.2, "Fred",123]]
-
-df = spark.createDataFrame(data,schema=schema)
-
-colsInt = udf(lambda z: toInt(z), IntegerType())
-spark.udf.register("colsInt", colsInt)
-
-def toInt(s):
-    if isinstance(s, str) == True:
-        st = [str(ord(i)) for i in s]
-        return(int(''.join(st)))
-    else:
-         return Null
-
-
-df2 = df.withColumn( 'semployee',colsInt('employee'))
+df = spark.createDataFrame(data=data2,schema=schema)
+df.printSchema()
+df.show(truncate=False)
