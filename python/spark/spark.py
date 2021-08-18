@@ -5,7 +5,7 @@ from datetime import datetime
 from pyspark.sql import Row
 from pyspark.sql.functions import sha2, col
 from pyspark.sql.functions import dayofweek
-sc = SparkContext()
+sc = SparkContext() 
 spark = SparkSession(sc)
 
 from pyspark.sql.types import StructType,StructField, StringType, IntegerType
