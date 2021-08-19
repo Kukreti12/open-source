@@ -7,7 +7,7 @@ colsQuantiles = [
     "credit_transaction_amount",
 ]
 
-
+#ttest
 def createQuantiles(dfColumn, numQuantiles):
     return pd.qcut(dfColumn, numQuantiles, labels=False, duplicates="drop")
 
