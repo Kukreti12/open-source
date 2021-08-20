@@ -9,5 +9,6 @@ connection = DriverRemoteConnection('ws://localhost:8182/gremlin', 'g')
 g = graph.traversal().withRemote(connection)
 # Reuse 'g' across the application
 #test
+#test2
 marko = g.V().has('person','name','marko').next()
 peopleMarkoKnows = g.V().has('person','name','marko').out('knows').toList()
