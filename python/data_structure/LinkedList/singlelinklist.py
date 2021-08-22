@@ -18,8 +18,8 @@ class linkedlist:
 
     def __init__(self):
         """create an empty stack"""
-        self._head=None  #reference the head node
-        self._size=0 #number of stack element
+        self._head=None  # reference the head node
+        self._size=0 # number of stack element
 
     def __len__(self):
         """return the length of the stack"""
