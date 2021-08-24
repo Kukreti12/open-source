@@ -1,2 +1,4 @@
+zero
+new line
 test
 test2
