@@ -27,13 +27,13 @@ def download_rates():
     data = response.json()
     df = pd.DataFrame(data)
     df.columns = map(str.lower, df.columns)
-    csv_path = '/opt/airflow/dags/file.csv'
+    csv_path = 'file.csv'
     df.to_csv(csv_path, index=False)
     ## Convert the json object to dataframe
     conn_string = 'postgresql://postgres:mysecretpassword@10.10.162.165:5432/postgres'
     db = create_engine(conn_string)
     conn = db.connect()
-    df.to_sql('bitcoin', con=conn, if_exists='append',
+    df.to_sql('bitcoin1', con=conn, if_exists='append',
           index=False)
     conn.close()
 
