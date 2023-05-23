@@ -64,7 +64,7 @@ with DAG("ingestion", start_date=datetime(2023, 3 ,14),
             task_id="s3_upload",
             python_callable=s3_upload
     )
-
+    # Add table
     # create_table = PostgresOperator(
     # task_id='create_table',
     # sql="/sql/bitcoin-ddl.sql"
