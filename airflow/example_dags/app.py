@@ -29,13 +29,14 @@ def download_rates():
     df.columns = map(str.lower, df.columns)
     csv_path = '/home/airflow/file.csv'
     df.to_csv(csv_path, index=False)
+    print(csv_path)
     ## Convert the json object to dataframe
-    conn_string = 'postgresql://postgres:mysecretpassword@10.10.162.165:5432/postgres'
-    db = create_engine(conn_string)
-    conn = db.connect()
-    df.to_sql('bitcoin2', con=conn, if_exists='append',
-          index=False)
-    conn.close()
+    # conn_string = 'postgresql://postgres:mysecretpassword@10.10.162.165:5432/postgres'
+    # db = create_engine(conn_string)
+    # conn = db.connect()
+    # df.to_sql('bitcoin2', con=conn, if_exists='append',
+    #       index=False)
+    # conn.close()
 
 
 def s3_upload():
