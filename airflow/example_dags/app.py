@@ -27,16 +27,16 @@ def download_rates():
     data = response.json()
     df = pd.DataFrame(data)
     df.columns = map(str.lower, df.columns)
-    csv_path = '/home/airflow/file.csv'
+    csv_path = 'file.csv'
     df.to_csv(csv_path, index=False)
     print(csv_path)
-    ## Convert the json object to dataframe
-    # conn_string = 'postgresql://postgres:mysecretpassword@10.10.162.165:5432/postgres'
-    # db = create_engine(conn_string)
-    # conn = db.connect()
-    # df.to_sql('bitcoin2', con=conn, if_exists='append',
-    #       index=False)
-    # conn.close()
+    # Convert the json object to dataframe
+    conn_string = 'postgresql://postgres:mysecretpassword@10.10.162.165:5432/postgres'
+    db = create_engine(conn_string)
+    conn = db.connect()
+    df.to_sql('bitcoin2', con=conn, if_exists='append',
+          index=False)
+    conn.close()
 
 
 def s3_upload():
@@ -48,7 +48,7 @@ def s3_upload():
 
     # download the object 'your_file.gz' from the bucket 'your_bucket' and save it to local FS as your_file_downloaded.gz
     #s3.Bucket('your_bucket').download_file('your_directory/your_file.gz', 'your_file_downloaded.gz')
-    s3_resource.Bucket("analyticsdata").upload_file('/opt/airflow/file.csv','bronze/file.csv')
+    s3_resource.Bucket("analyticsdata").upload_file('file.csv','bronze/file.csv')
 
 with DAG("ingestion", start_date=datetime(2023, 3 ,14), 
     schedule_interval="@daily",
