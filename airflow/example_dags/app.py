@@ -36,7 +36,7 @@ def download_rates():
     # conn = db.connect()
     # df.to_sql('bitcoin2', con=conn, if_exists='append',
     #       index=False)
-    conn.close()
+    # conn.close()
 
 
 def s3_upload():
