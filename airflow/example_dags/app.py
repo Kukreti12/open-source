@@ -27,7 +27,7 @@ def download_rates():
     data = response.json()
     df = pd.DataFrame(data)
     df.columns = map(str.lower, df.columns)
-    csv_path = '/usr/local/airflow/dags/file.csv'
+    csv_path = '/mnt/shared/airflow-dag-result/file.csv'
     df.to_csv(csv_path, index=False)
     print(csv_path)
     # Convert the json object to dataframe
