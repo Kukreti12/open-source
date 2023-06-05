@@ -31,11 +31,11 @@ def download_rates():
     df.to_csv(csv_path, index=False)
     print(csv_path)
     # Convert the json object to dataframe
-    conn_string = 'postgresql://postgres:mysecretpassword@10.10.162.165:5432/postgres'
-    db = create_engine(conn_string)
-    conn = db.connect()
-    df.to_sql('bitcoin2', con=conn, if_exists='append',
-          index=False)
+    # conn_string = 'postgresql://postgres:mysecretpassword@10.10.162.165:5432/postgres'
+    # db = create_engine(conn_string)
+    # conn = db.connect()
+    # df.to_sql('bitcoin2', con=conn, if_exists='append',
+    #       index=False)
     conn.close()
 
 
@@ -61,14 +61,15 @@ with DAG("ingestion", start_date=datetime(2023, 3 ,14),
     )
 
     
-    s3_upload_task = PythonOperator(
-            task_id="s3_upload",
-            python_callable=s3_upload
-    )
-    # Add table
+    # s3_upload_task = PythonOperator(
+    #         task_id="s3_upload",
+    #         python_callable=s3_upload
+    # )
+    # # Add table
     # create_table = PostgresOperator(
     # task_id='create_table',
     # sql="/sql/bitcoin-ddl.sql"
     # )
 
-    downloading_rates >> s3_upload_task
+    # downloading_rates >> s3_upload_task
+    downloading_rates
