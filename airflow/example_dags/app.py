@@ -29,26 +29,17 @@ def download_rates():
     df.columns = map(str.lower, df.columns)
     csv_path = '/mnt/shared/airflow-dag-result/file.csv'
     df.to_csv(csv_path, index=False)
-    print(csv_path)
-    # Convert the json object to dataframe
-    # conn_string = 'postgresql://postgres:mysecretpassword@10.10.162.165:5432/postgres'
-    # db = create_engine(conn_string)
-    # conn = db.connect()
-    # df.to_sql('bitcoin2', con=conn, if_exists='append',
-    #       index=False)
-    # conn.close()
-
 
 def s3_upload():
     s3_resource = boto3.resource('s3',
-                        endpoint_url='https://mapr1.ailab.local:9000',
-                        aws_access_key_id='R3N4IUCGKRQPU9KMQTTKK02DGYHIM9B3CWJBKS43CEO6X8TRXLQ3PRMC9KT305ZNH3H9BOC4LHJLQNDGWYOAUZORAT1OMTMCGZ06P042G4TZFX0OEO2RT3MT2XQQ',
-                        aws_secret_access_key='B1LWRXF0INQKA3BENHU6V6H1A8X128ORQS9K0Z787ZZK1MB6JSCY2G4HTTZMPJL0PPB363A1R3RSN0MP5CTXSV56ARS6LPR53FPS0918O1YJ445',
-                        verify= '/opt/airflow/dags/df.pem')
+                        endpoint_url='https://singlenodedf.ailab.local:9000',
+                        aws_access_key_id='7GM4BT71Q56BX55FZOCN4XF4ATVQTS0TJIPTVJIPC82KAFZLVGC5Q2ELQIDAJEORM6FWOYSL7D40ZZQC1PJZJANHXSL3LNIRAKGVM3EY2NDYAXPX3AFXS0A6F',
+                        aws_secret_access_key='BNARYBWC1LSDK02S7O8VQRPHHXTD78Q6K52UZZ5XMRCXZX8K202CNE1VWTXGX4OGJ6T2WNMUX',
+                        verify= '/mnt/shared/df-pem/df5.pem')
 
     # download the object 'your_file.gz' from the bucket 'your_bucket' and save it to local FS as your_file_downloaded.gz
     #s3.Bucket('your_bucket').download_file('your_directory/your_file.gz', 'your_file_downloaded.gz')
-    s3_resource.Bucket("analyticsdata").upload_file('/usr/local/airflow/dags/file.csv','bronze/file.csv')
+    s3_resource.Bucket("landing").upload_file('/mnt/shared/airflow-dag-result/file.csv','file.csv')
 
 with DAG("ingestion", start_date=datetime(2023, 3 ,14), 
     schedule_interval="@daily",
@@ -61,15 +52,9 @@ with DAG("ingestion", start_date=datetime(2023, 3 ,14),
     )
 
     
-    # s3_upload_task = PythonOperator(
-    #         task_id="s3_upload",
-    #         python_callable=s3_upload
-    # )
-    # # Add table
-    # create_table = PostgresOperator(
-    # task_id='create_table',
-    # sql="/sql/bitcoin-ddl.sql"
-    # )
+    s3_upload_task = PythonOperator(
+            task_id="s3_upload",
+            python_callable=s3_upload
+    )
 
-    # downloading_rates >> s3_upload_task
-    downloading_rates
+    downloading_rates >> s3_upload_task
