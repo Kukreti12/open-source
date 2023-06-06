@@ -36,6 +36,18 @@ def download_rates():
     table_name = 'test1'
     postgres_hook.insert_rows(table_name, df.values.tolist(), df.columns.tolist())
 
+
+def s3_upload():
+    s3_resource = boto3.resource('s3',
+                        endpoint_url='https://home.ailab.local:31900/',
+                        aws_access_key_id='minioadmin',
+                        aws_secret_access_key='minioadmin')
+
+    # download the object 'your_file.gz' from the bucket 'your_bucket' and save it to local FS as your_file_downloaded.gz
+    #s3.Bucket('your_bucket').download_file('your_directory/your_file.gz', 'your_file_downloaded.gz')
+    s3_resource.Bucket("test").upload_file('/mnt/shared/airflow-dag-result/file.csv','file.csv')
+
+
 with DAG("ingestion", start_date=datetime(2023, 3 ,14), 
     schedule_interval="@daily",
     default_args=default_args, catchup=False,) as dag:
@@ -45,5 +57,10 @@ with DAG("ingestion", start_date=datetime(2023, 3 ,14),
             task_id="downloading_rates",
             python_callable=download_rates
     )
+        
+    s3_upload_task = PythonOperator(
+            task_id="s3_upload",
+            python_callable=s3_upload
+    )
 
-    downloading_rates
+    downloading_rates >> s3_upload_task
