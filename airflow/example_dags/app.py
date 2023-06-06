@@ -30,7 +30,7 @@ def download_rates():
     csv_path = '/mnt/shared/airflow-dag-result/file.csv'
     df.to_csv(csv_path, index=False)
     df2=pd.read_csv(csv_path)
-    df2.csv('/mnt/shared/airflow-dag-result/file3.csv')
+    df2.to_csv('/mnt/shared/airflow-dag-result/file3.csv')
 
 def s3_upload():
     s3_resource = boto3.resource('s3',
