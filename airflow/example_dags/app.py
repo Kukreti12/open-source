@@ -39,13 +39,14 @@ def download_rates():
 
 def s3_upload():
     s3_resource = boto3.resource('s3',
-                        endpoint_url='https://home.ailab.local:31900/',
-                        aws_access_key_id='minioadmin',
-                        aws_secret_access_key='minioadmin')
+                        endpoint_url='https://singlenodedf.ailab.local:9000',
+                        aws_access_key_id='7GM4BT71Q56BX55FZOCN4XF4ATVQTS0TJIPTVJIPC82KAFZLVGC5Q2ELQIDAJEORM6FWOYSL7D40ZZQC1PJZJANHXSL3LNIRAKGVM3EY2NDYAXPX3AFXS0A6F',
+                        aws_secret_access_key='BNARYBWC1LSDK02S7O8VQRPHHXTD78Q6K52UZZ5XMRCXZX8K202CNE1VWTXGX4OGJ6T2WNMUX',
+                        verify= '/mnt/shared/df5.pem')
 
     # download the object 'your_file.gz' from the bucket 'your_bucket' and save it to local FS as your_file_downloaded.gz
     #s3.Bucket('your_bucket').download_file('your_directory/your_file.gz', 'your_file_downloaded.gz')
-    s3_resource.Bucket("test").upload_file('/mnt/shared/airflow-dag-result/file.csv','file.csv')
+    s3_resource.Bucket("landing").upload_file('/mnt/shared/airflow-dag-result/file.csv','file.csv')
 
 
 with DAG("ingestion", start_date=datetime(2023, 3 ,14), 
