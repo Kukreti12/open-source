@@ -54,14 +54,14 @@ with DAG("ingestion", start_date=datetime(2023, 3 ,14),
     default_args=default_args, catchup=False,) as dag:
 
 
-    downloading_rates = PythonOperator(
+    push_data_df_postgres = PythonOperator(
             task_id="downloading_rates",
             python_callable=download_rates
     )
         
-    s3_upload_task = PythonOperator(
+    s3_upload = PythonOperator(
             task_id="s3_upload",
             python_callable=s3_upload
     )
 
-    downloading_rates >> s3_upload_task
+    push_data_df_postgres >> s3_upload
