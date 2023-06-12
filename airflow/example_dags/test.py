@@ -1,6 +1,7 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
+from airflow.models import XCom
 from datetime import datetime, timedelta
 import requests
 import pandas as pd
@@ -26,6 +27,8 @@ def get_data_postgres():
         key = row[0]  # Assuming the first column is the key
         value = row[1]  # Assuming the second column is the value
         data_dict[key] = value
+        task_instance = XCom.get_current_task_instance()
+        task_instance.xcom_push(key=key, value=value)
 
 with DAG("get_metadata", start_date=datetime(2023, 3 ,14), 
     schedule_interval="@daily",
