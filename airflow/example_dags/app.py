@@ -1,6 +1,5 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
-from airflow.providers.postgres.operators.postgres import PostgresOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from datetime import datetime, timedelta
 import requests
@@ -44,8 +43,7 @@ def s3_upload():
                         aws_secret_access_key='BNARYBWC1LSDK02S7O8VQRPHHXTD78Q6K52UZZ5XMRCXZX8K202CNE1VWTXGX4OGJ6T2WNMUX',
                         verify= False)
 
-    # download the object 'your_file.gz' from the bucket 'your_bucket' and save it to local FS as your_file_downloaded.gz
-    #s3.Bucket('your_bucket').download_file('your_directory/your_file.gz', 'your_file_downloaded.gz')
+    #Upload your file from DF location to the S3 bucket
     s3_resource.Bucket("landing").upload_file('/mnt/shared/airflow-dag-result/file.csv','file.csv')
 
 
