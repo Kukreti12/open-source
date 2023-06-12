@@ -17,7 +17,7 @@ default_args = {
     "retry_delay": timedelta(minutes=5)
 }
 
-def get_data_postgres(**context):
+def get_data_postgres():
      # Connect to PostgreSQL using PostgresHook
     postgres_hook = PostgresHook(postgres_conn_id='postgres_default')
     result = postgres_hook.get_records("SELECT * FROM nyc")
@@ -27,8 +27,8 @@ def get_data_postgres(**context):
         key = row[0]  # Assuming the first column is the key
         value = row[1]  # Assuming the second column is the value
         data_dict[key] = value
-        context['ti'].xcom_push(key=key, value=value)
-
+        # context['ti'].xcom_push(key=key, value=value)
+    return data_dict
 with DAG("get_metadata", start_date=datetime(2023, 3 ,14), 
     schedule_interval="@daily",
     default_args=default_args, catchup=False,) as dag:
