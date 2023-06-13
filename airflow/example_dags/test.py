@@ -18,7 +18,7 @@ default_args = {
 }
 
 
-def get_data_postgres():
+def get_data_postgres(**context):
     # Connect to PostgreSQL using PostgresHook
     postgres_hook = PostgresHook(postgres_conn_id="postgres_default")
     ##get the data from the postgres table
@@ -34,8 +34,9 @@ def get_data_postgres():
         key = row[0]  # Assuming the first column is the key
         year = str(row[1])
         month = str(row[2])
-        data_dict[key]=year+"-"+month
-        # context['ti'].xcom_push(key=key, value=value)
+        Value=year+"-"+month
+        data_dict[key]=Value
+        context['ti'].xcom_push(key=key, value=Value)
         print(key, year, month)
 
 
