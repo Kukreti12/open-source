@@ -50,7 +50,6 @@ def download_data_nyc(**context):
         response = requests.get(url)
         with open(output_file, "wb") as file:
             file.write(response.content)
-        context['ti'].xcom_delete(key=i)
 with DAG(
     "get_metadata",
     start_date=datetime(2023, 3, 14),
