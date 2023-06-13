@@ -43,11 +43,12 @@ def get_data_postgres(**context):
 
 
 def download_data_nyc(**context):
-    value_yellow = context['ti'].xcom_pull(task_ids='nyc_get_audit_data', key='yellow')
     for i in ['yellow','green','fhv','fhvhv']:
-        url = "https://d37ci6vzurychx.cloudfront.net/trip-data/{}_tripdata_{}.parquet".format(i,value_yellow)
-        output_file = "/mnt/shared/DFM/quarantine/{}-{}.parquet".format(i,value_yellow)
+        value_taxi = context['ti'].xcom_pull(task_ids='nyc_get_audit_data', key=i)
+        url = "https://d37ci6vzurychx.cloudfront.net/trip-data/{}_tripdata_{}.parquet".format(i,value_taxi)
+        output_file = "/mnt/shared/DFM/quarantine/{}-{}.parquet".format(i,value_taxi)
         response = requests.get(url)
+        print(output_file)
         with open(output_file, "wb") as file:
             file.write(response.content)
 with DAG(
