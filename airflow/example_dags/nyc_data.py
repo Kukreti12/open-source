@@ -70,4 +70,4 @@ with DAG(
     )
 
   
-    nyc_get_audit_data >> download_data_nyc >>
+    nyc_get_audit_data >> download_data_nyc
