@@ -40,17 +40,31 @@ def get_data_postgres(**context):
         print(key, year, month)
 
 
+def download_data_nyc(**context):
+    value_yellow = context['ti'].xcom_pull(task_ids='nyc_get_audit_data', key='yellow')
+    for i in ['yellow','green','fhv','fhvhv']:
+        url = "https://d37ci6vzurychx.cloudfront.net/trip-data/{}_tripdata_{}.parquet".format(i,value_yellow)
+        output_file = "/mnt/shared/dfm/quarantine/{}-{}.parquet".format(i,value_yellow)
+        response = requests.get(url)
+        with open(output_file, "wb") as file:
+            file.write(response.content)
 with DAG(
     "get_metadata",
     start_date=datetime(2023, 3, 14),
     schedule_interval="@daily",
     default_args=default_args,
-    catchup=False,
-) as dag:
+    catchup=False,) as dag:
+
     nyc_get_audit_data = PythonOperator(
         task_id="nyc_get_audit_data",
         python_callable=get_data_postgres,
         provide_context=True,
     )
 
-    nyc_get_audit_data
+    download_data_nyc = PythonOperator(
+    task_id="download_data_nyc",
+    python_callable=download_data_nyc,
+    provide_context=True,
+    )
+
+    nyc_get_audit_data >> download_data_nyc
