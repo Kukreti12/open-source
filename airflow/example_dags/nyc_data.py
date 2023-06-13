@@ -1,6 +1,8 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
+from airflow.contrib.sensors.file_sensor import FileSensor
+from airflow.operators.bash_operator import BashOperator
 from airflow.models import XCom
 from datetime import datetime, timedelta
 import requests
@@ -67,4 +69,5 @@ with DAG(
     provide_context=True,
     )
 
-    nyc_get_audit_data >> download_data_nyc
+  
+    nyc_get_audit_data >> download_data_nyc >>
