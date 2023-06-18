@@ -1,0 +1,490 @@
+{
+	"public_identifier": "saurabh-sharma-57618a57",
+	"profile_pic_url": "https://media.licdn.com/dms/image/C4E03AQGZ4Mux9qJSYg/profile-displayphoto-shrink_800_800/0/1566502824775?e=1692835200&v=beta&t=oenqYFPb19ajDwvquEJLMVbJBNk9bLMvhHF0vXFBS10",
+	"background_cover_image_url": null,
+	"first_name": "Saurabh",
+	"last_name": "Sharma",
+	"full_name": "Saurabh Sharma",
+	"follower_count": null,
+	"occupation": "AI and Big Data Solution Architect at Hewlett Packard Enterprise",
+	"headline": "AI and Big Data Solution Architect at HPE",
+	"summary": "Working as Data Engineer and Data Scientist for more than 8 years.\\n\\u2022 Engaging in on-site projects proving the use of AWS services to support new distributed computing. Engagements includes migration of existing applications and development of new applications using AWS cloud services\\n\\u2022 Experience with building data pipelines and applications to stream and process datasets at low latencies on AWS, Azure and GCP cloud.\\n\\u2022 Responsible in dealing with structured, semi-structured and unstructured data in batch and real-time environments.\\n\\u2022 Experience with DevOps, code deployment processes, microservices, and serverless architectures.\\n\\u2022 Responsible for modeling complex problems, discovering insights and identifying opportunities using statistical, algorithmic, mining using python, R language.",
+	"country": "US",
+	"country_full_name": "United States of America",
+	"city": "Tempe",
+	"state": "Arizona",
+	"experiences": [{
+		"starts_at": {
+			"day": 1,
+			"month": 1,
+			"year": 2022
+		},
+		"ends_at": null,
+		"company": "Hewlett Packard Enterprise",
+		"company_linkedin_profile_url": "https://www.linkedin.com/company/hewlett-packard-enterprise/",
+		"title": "AI and Big Data Solution Architect",
+		"description": null,
+		"location": "Arizona, United States",
+		"logo_url": "https://media.licdn.com/dms/image/C4E0BAQH6qdm7VJ5BPA/company-logo_400_400/0/1593697162881?e=1695254400&v=beta&t=F2rNe_SZZcVNY16DjDyV8_dIDAbu4AKNvyBcOMscd0M"
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 3,
+			"year": 2021
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 1,
+			"year": 2022
+		},
+		"company": "NCR Corporation",
+		"company_linkedin_profile_url": "https://www.linkedin.com/company/ncr-corporation/",
+		"title": "Lead Data Engineer",
+		"description": null,
+		"location": null,
+		"logo_url": "https://media.licdn.com/dms/image/D560BAQG4vWMTjTWmhQ/company-logo_400_400/0/1685621299192?e=1695254400&v=beta&t=1xC7xVb-uf8Zu1fbFuzBnTRYDMqJvNj1g3Fiq7kohuY"
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 10,
+			"year": 2018
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 3,
+			"year": 2021
+		},
+		"company": "Deloitte Consulting",
+		"company_linkedin_profile_url": "https://www.linkedin.com/company/deloitte/",
+		"title": "Solutions Specialist",
+		"description": null,
+		"location": "Tempe, Arizona, United States",
+		"logo_url": "https://media.licdn.com/dms/image/C560BAQGNtpblgQpJoQ/company-logo_400_400/0/1662120927694?e=1695254400&v=beta&t=D8O9bfRRkSl0Gu7qNPo_Xeb-sUFUrZpnyJTGFMShGCI"
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 2,
+			"year": 2018
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 10,
+			"year": 2018
+		},
+		"company": "Ceres Environmental Services, Inc.",
+		"company_linkedin_profile_url": "https://www.linkedin.com/company/ceres-environmental-services-inc./",
+		"title": "Sr. Data Analyst",
+		"description": "Applied technical skills using Python, SAS and SQL in data collection, data analysis and reporting to procure data from database structures to report and provide solutions to client requests in a timely manner.\\n\\u2022 Worked with code management tooling such as Github / Gitlab.\\n\\u2022 Develop CI/CD pipeline tooling and deployments using bamboo/Jenkins.\\n\\u2022 Responsible for creating project plan and experienced scrum methodologies and agile practices",
+		"location": "Sarasota, Florida Area",
+		"logo_url": "https://media.licdn.com/dms/image/D4E0BAQH55_q8IrqhfQ/company-logo_400_400/0/1665517477821?e=1695254400&v=beta&t=BvluCeqpPtCQITA519PFl3yZzYdaZz9YjduKjRfHXxs"
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 5,
+			"year": 2017
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 11,
+			"year": 2017
+		},
+		"company": "FCCI Insurance Group",
+		"company_linkedin_profile_url": "https://www.linkedin.com/company/fcciinsurance/",
+		"title": "Data Science Intern",
+		"description": "Develop predictive models to determine a consumer\\u2019s propensity to commit an action towards FCCI products through the various offline and online channels using linear and logistic regression in R, SAS.\\n\\u2022 Experience in designing rich data visualization to communicate to customers or management.\\n\\u2022 Handle complex datasets, build classification models for predictions & forecasting based on the training data using Machine learning (Random Forest, Regression, Clustering).\\n\\u2022 Proficiency with Python. Experience with deep learning frameworks such as TensorFlow, Theano, Keras, Pandas, NumPy, scikit-learn\\n\\u2022 Experience in dealing with Apache Hadoop component like HDFS, MapReduce and Hive.",
+		"location": "Sarasota, Florida Area",
+		"logo_url": "https://media.licdn.com/dms/image/C4E0BAQHFn8NpaVHTmQ/company-logo_400_400/0/1528842092318?e=1695254400&v=beta&t=rjTQ0TPmrdq6S5gNG-GTOKMjB9fqiKGYaTN2mkfvAxw"
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 11,
+			"year": 2013
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 6,
+			"year": 2016
+		},
+		"company": "L&T Infotech Ltd",
+		"company_linkedin_profile_url": "https://www.linkedin.com/company/l&t-infotech/",
+		"title": "Business Intelligence Analyst",
+		"description": "Over 3 years of solid SAS programming experience in developing applications, data warehousing, statistical analysis and report generation using SAS 9.x and SAS 8.x.\\n\\u2022 Developed regression models (including generalized linear models and gradient boosting machines) to predict risk using driving characteristics and behaviors in support of usage-based insurance.\\n\\u2022 Worked in the Insurance field gathered and analyzed business requirements and produced specification documents for new project requests. Developed ad-hoc queries and reports for clients and provide analytical support and recommendation as necessary. Acted as liaison between business unit and report developer to develop, communicate and modify existing report.",
+		"location": "Pune",
+		"logo_url": "https://media.licdn.com/dms/image/D4D0BAQGsPjF4QmtIYQ/company-logo_400_400/0/1667281246514?e=1695254400&v=beta&t=hZlwtpTuvfOPluYLdVUQylKYCm0N6AllH1bFNVtR990"
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 7,
+			"year": 2012
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 12,
+			"year": 2012
+		},
+		"company": "Bharat Electronics",
+		"company_linkedin_profile_url": "https://www.linkedin.com/company/bharat-electronics/",
+		"title": "Intern",
+		"description": null,
+		"location": null,
+		"logo_url": "https://media.licdn.com/dms/image/C560BAQHp5ybAOyo31Q/company-logo_400_400/0/1519856224089?e=1695254400&v=beta&t=pZ3UnsP37SBe174c2nWSzVd0cBN4IvcMvn1pUalwFpg"
+	}],
+	"education": [{
+		"starts_at": {
+			"day": 1,
+			"month": 1,
+			"year": 2016
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 1,
+			"year": 2017
+		},
+		"field_of_study": "Management information system",
+		"degree_name": "Master's degree",
+		"school": "University of South Florida",
+		"school_linkedin_profile_url": null,
+		"description": null,
+		"logo_url": "https://media.licdn.com/dms/image/D4E0BAQHwsMY_NU98iw/company-logo_400_400/0/1686165872547?e=1695254400&v=beta&t=dZMvCyNKatMZAbRW4ly5NJ2vgkkA-9EzRaxkhbp3NiQ",
+		"grade": null,
+		"activities_and_societies": null
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 1,
+			"year": 2009
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 1,
+			"year": 2013
+		},
+		"field_of_study": "Electonics & Communication",
+		"degree_name": "B.TECH",
+		"school": "Institute:  Lingaya\\u2019s University",
+		"school_linkedin_profile_url": null,
+		"description": null,
+		"logo_url": null,
+		"grade": null,
+		"activities_and_societies": null
+	}],
+	"languages": ["English", "Hindi"],
+	"accomplishment_organisations": [{
+		"starts_at": {
+			"day": 1,
+			"month": 11,
+			"year": 2013
+		},
+		"ends_at": null,
+		"org_name": "L&T",
+		"title": "Yes",
+		"description": null
+	}],
+	"accomplishment_publications": [],
+	"accomplishment_honors_awards": [],
+	"accomplishment_patents": [],
+	"accomplishment_courses": [{
+		"name": "Advance database Management",
+		"number": null
+	}, {
+		"name": "Analysis system and design",
+		"number": null
+	}, {
+		"name": "Distributed Information and System",
+		"number": null
+	}, {
+		"name": "statistical Data mining",
+		"number": null
+	}],
+	"accomplishment_projects": [{
+		"starts_at": {
+			"day": 1,
+			"month": 11,
+			"year": 2017
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 11,
+			"year": 2017
+		},
+		"title": "Insurance claim Fraud Detection (Python, Tableau)",
+		"description": "Build the model using different machine learning algorithm like Logistic regression, Support vector machine and decision trees to predict the fraud cases.",
+		"url": null
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 11,
+			"year": 2017
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 11,
+			"year": 2017
+		},
+		"title": "Movie Recommendation System (R, SAS, Tableau)",
+		"description": "Created movie recommendation system using Collaborative Filtering Algorithm that suggests new movies to watch from a large dataset based on user\\u2019s past ratings of watched   movies",
+		"url": null
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 11,
+			"year": 2016
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 11,
+			"year": 2016
+		},
+		"title": "Online Food Ordering System \\u2013 GRUBHUB ",
+		"description": "The project aim is to engage customers with the nearby restaurants and hence save the customers from the tedious task of visiting restaurant to buy food. Applied 6S process to the current process to standardized the process. Our goal was to reach the near perfection in performance improvement.  ",
+		"url": null
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 11,
+			"year": 2016
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 11,
+			"year": 2016
+		},
+		"title": "Report on analysis of Aircraft Crashes (R language, Tableau, MS excel)",
+		"description": "Air craft crashes are one of the most dangerous and mysterious mishaps. Identifying cause and casualties and more over take preventive measures were the biggest challenges of the project. Built Logistic Regression, Na\\u00efve Bayes, RBF & Neural Network model on Aircraft dataset from scratch tuning their meta-parameters to explore, find, and argue which model is best suited.",
+		"url": null
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 9,
+			"year": 2016
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 9,
+			"year": 2016
+		},
+		"title": "Statistical Data Mining on Effect of law on causalities in Road Accidents (R language, Python, MS excel)",
+		"description": "Worked on a data set which has 192 data points. The objective of this project is to do predictive analysis, I have applied recursive partitioning and regression methods to forecast of number of deaths/injuries for month.",
+		"url": null
+	}, {
+		"starts_at": null,
+		"ends_at": null,
+		"title": "Watson Analytics for Cyber Security in Financial Industry",
+		"description": "Worked with a financial institution to identify anomalies behavior for accounts which were hacked. Starting from decision tree to decide which variables are the most important, built the logistics regression based model and suggested the ways identify the possible cyber-security breaches in various operational transactions.",
+		"url": null
+	}],
+	"accomplishment_test_scores": [],
+	"volunteer_work": [],
+	"certifications": [{
+		"starts_at": {
+			"day": 1,
+			"month": 8,
+			"year": 2020
+		},
+		"ends_at": null,
+		"name": "Microsoft Certified: Azure Fundamentals",
+		"license_number": null,
+		"display_source": "youracclaim.com",
+		"authority": "Microsoft",
+		"url": "https://www.youracclaim.com/badges/9bac74eb-2c14-42b4-bd81-246b13e33e96?source=linked_in_profile"
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 6,
+			"year": 2017
+		},
+		"ends_at": null,
+		"name": "SAS Certified Base Programmer for SAS 9",
+		"license_number": "https://www.youracclaim.com/badges/6aabaa27-3ad0-41aa-b75a-e1b79f63b72d",
+		"display_source": "youracclaim.com",
+		"authority": "SAS",
+		"url": "https://www.youracclaim.com/badges/6aabaa27-3ad0-41aa-b75a-e1b79f63b72d"
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 3,
+			"year": 2017
+		},
+		"ends_at": null,
+		"name": "Tableau training  for Data Sceince",
+		"license_number": null,
+		"display_source": "udemy.com",
+		"authority": "Udemy",
+		"url": "https://www.udemy.com/certificate/UC-5MNF89U9/"
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 11,
+			"year": 2016
+		},
+		"ends_at": null,
+		"name": "Advanced Analytics In R For Data Science",
+		"license_number": null,
+		"display_source": "udemy.com",
+		"authority": "Udemy",
+		"url": "https://www.udemy.com/certificate/UC-J6QBEOEX/"
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 7,
+			"year": 2016
+		},
+		"ends_at": null,
+		"name": "Introduction to Financial Accounting",
+		"license_number": "WD7YTE96A3XV",
+		"display_source": "coursera.org",
+		"authority": "Coursera Course Certificates",
+		"url": "https://www.coursera.org/account/accomplishments/verify/WD7YTE96A3XV"
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 6,
+			"year": 2016
+		},
+		"ends_at": null,
+		"name": "Statistical Inference",
+		"license_number": "FH63RBASW4Y3",
+		"display_source": "coursera.org",
+		"authority": "Coursera Course Certificates",
+		"url": "https://www.coursera.org/account/accomplishments/verify/FH63RBASW4Y3"
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 5,
+			"year": 2021
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 5,
+			"year": 2024
+		},
+		"name": "AWS Certified Solutions Architect \\u2013 Professional",
+		"license_number": null,
+		"display_source": "credly.com",
+		"authority": "Amazon Web Services (AWS)",
+		"url": "https://www.credly.com/badges/869d9901-dcc1-4936-8ecf-6dfafee5a1f6?source=linked_in_profile"
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 11,
+			"year": 2020
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 11,
+			"year": 2023
+		},
+		"name": "AWS Certified Solutions Architect \\u2013 Associate",
+		"license_number": null,
+		"display_source": "youracclaim.com",
+		"authority": "Amazon Web Services (AWS)",
+		"url": "https://www.youracclaim.com/badges/8701bda2-0ac2-4be3-ab0b-76ae87414a3c?source=linked_in_profile"
+	}, {
+		"starts_at": {
+			"day": 1,
+			"month": 6,
+			"year": 2020
+		},
+		"ends_at": {
+			"day": 1,
+			"month": 6,
+			"year": 2023
+		},
+		"name": "AWS Certified Developer \\u2013 Associate",
+		"license_number": null,
+		"display_source": "youracclaim.com",
+		"authority": "Amazon Web Services (AWS)",
+		"url": "https://www.youracclaim.com/badges/65714a74-f51f-486c-996a-ed99a2d7eb32/linked_in_profile"
+	}, {
+		"starts_at": null,
+		"ends_at": null,
+		"name": "ISTQB; CP BAT; AINS24",
+		"license_number": null,
+		"display_source": null,
+		"authority": null,
+		"url": null
+	}, {
+		"starts_at": null,
+		"ends_at": null,
+		"name": "SAS Certified Statistical Business Analyst Using SAS 9: Regression and Modeling",
+		"license_number": null,
+		"display_source": "youracclaim.com",
+		"authority": "SAS",
+		"url": "https://www.youracclaim.com/badges/bd907e29-4d2c-4a30-890e-9668c9969766/linked_in_profile"
+	}],
+	"connections": null,
+	"people_also_viewed": [{
+		"link": "https://www.linkedin.com/in/rajani-kant-cloud-architect",
+		"name": "Rajani Kant",
+		"summary": null,
+		"location": null
+	}, {
+		"link": "https://www.linkedin.com/in/boyce-steve-1242b7178",
+		"name": "Boyce, Steve",
+		"summary": null,
+		"location": null
+	}, {
+		"link": "https://www.linkedin.com/in/rohan-mysore-303a711b",
+		"name": "Rohan Mysore",
+		"summary": null,
+		"location": null
+	}, {
+		"link": "https://www.linkedin.com/in/kate-stephens-dev",
+		"name": "Kate Stephens",
+		"summary": null,
+		"location": null
+	}, {
+		"link": "https://www.linkedin.com/in/paighowal",
+		"name": "Nitin Paighowal MS, MBA",
+		"summary": null,
+		"location": null
+	}, {
+		"link": "https://www.linkedin.com/in/plecong",
+		"name": "Phuong LeCong",
+		"summary": null,
+		"location": null
+	}, {
+		"link": "https://www.linkedin.com/in/kapil-jain-86a70513a",
+		"name": "Kapil Jain",
+		"summary": null,
+		"location": null
+	}, {
+		"link": "https://www.linkedin.com/in/ksubbuiyer",
+		"name": "Subbu Iyer",
+		"summary": null,
+		"location": null
+	}, {
+		"link": "https://www.linkedin.com/in/steven-seligsohn",
+		"name": "Steven Seligsohn",
+		"summary": null,
+		"location": null
+	}, {
+		"link": "https://www.linkedin.com/in/ashwinippatil",
+		"name": "Ashwini Patil",
+		"summary": null,
+		"location": null
+	}],
+	"recommendations": [],
+	"activities": [],
+	"similarly_named_profiles": [],
+	"articles": [],
+	"groups": [],
+	"phone_numbers": [],
+	"social_networking_services": [],
+	"skills": ["MySQL", "R", "Linux", "Python", "Requirements Analysis", "Database Testing", "Data Mining", "Microsoft Office", "Data Analysis", "SQL", "Testing", "PowerPoint", "Microsoft Word", "Matlab", "Microsoft SQL Server", "Agile Methodologies", "C++", "HTML", "Java", "C"],
+	"inferred_salary": {
+		"min": null,
+		"max": null
+	},
+	"gender": null,
+	"birth_date": null,
+	"industry": null,
+	"extra": {
+		"github_profile_id": null,
+		"twitter_profile_id": null,
+		"facebook_profile_id": null
+	},
+	"interests": [],
+	"personal_emails": [],
+	"personal_numbers": []
+}
