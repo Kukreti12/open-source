@@ -1,5 +1,6 @@
 from vehicle import Vehicle
 
+
 class Car(Vehicle):
     default_tire = "tire"
 

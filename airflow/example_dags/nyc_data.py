@@ -28,36 +28,39 @@ def get_data_postgres(**context):
                 EXTRACT(YEAR FROM new_date) as year, LPAD(EXTRACT(MONTH FROM new_date)::text, 2, '0') as month
                 FROM (SELECT  *, DATE((DATE_TRUNC('month', lastmonthprocessed) + INTERVAL '1 month')) AS new_date from nyc) as t"""
 
-    result = postgres_hook.get_records(sql_query
-    )
+    result = postgres_hook.get_records(sql_query)
     # Process the result and save it in a dictionary
     data_dict = {}
     for row in result:
         key = row[0]  # Assuming the first column is the key
         year = str(row[1])
         month = str(row[2])
-        Value=year+"-"+month
-        data_dict[key]=Value
-        context['ti'].xcom_push(key=key, value=Value)
+        Value = year + "-" + month
+        data_dict[key] = Value
+        context["ti"].xcom_push(key=key, value=Value)
         print(key, year, month)
 
 
 def download_data_nyc(**context):
-    for i in ['yellow','green','fhv','fhvhv']:
-        value_taxi = context['ti'].xcom_pull(task_ids='nyc_get_audit_data', key=i)
-        url = "https://d37ci6vzurychx.cloudfront.net/trip-data/{}_tripdata_{}.parquet".format(i,value_taxi)
-        output_file = "/mnt/shared/DFM/quarantine/{}-{}.parquet".format(i,value_taxi)
+    for i in ["yellow", "green", "fhv", "fhvhv"]:
+        value_taxi = context["ti"].xcom_pull(task_ids="nyc_get_audit_data", key=i)
+        url = "https://d37ci6vzurychx.cloudfront.net/trip-data/{}_tripdata_{}.parquet".format(
+            i, value_taxi
+        )
+        output_file = "/mnt/shared/DFM/quarantine/{}-{}.parquet".format(i, value_taxi)
         response = requests.get(url)
         print(output_file)
         with open(output_file, "wb") as file:
             file.write(response.content)
+
+
 with DAG(
     "get_metadata",
     start_date=datetime(2023, 3, 14),
     schedule_interval="@daily",
     default_args=default_args,
-    catchup=False,) as dag:
-
+    catchup=False,
+) as dag:
     nyc_get_audit_data = PythonOperator(
         task_id="nyc_get_audit_data",
         python_callable=get_data_postgres,
@@ -65,10 +68,9 @@ with DAG(
     )
 
     download_data_nyc = PythonOperator(
-    task_id="download_data_nyc",
-    python_callable=download_data_nyc,
-    provide_context=True,
+        task_id="download_data_nyc",
+        python_callable=download_data_nyc,
+        provide_context=True,
     )
 
-  
     nyc_get_audit_data >> download_data_nyc

@@ -1,6 +1,3 @@
-
-
-
 # Convenient way for choosing right Colour Mask to Detect needed Object
 #
 # Algorithm:
@@ -23,18 +20,18 @@ def do_nothing(x):
 
 # Giving name to the window with Track Bars
 # And specifying that window is resizable
-cv2.namedWindow('Track Bars', cv2.WINDOW_NORMAL)
+cv2.namedWindow("Track Bars", cv2.WINDOW_NORMAL)
 
 # Defining Track Bars for convenient process of choosing colours
 # For minimum range
-cv2.createTrackbar('min_blue', 'Track Bars', 0, 255, do_nothing)
-cv2.createTrackbar('min_green', 'Track Bars', 0, 255, do_nothing)
-cv2.createTrackbar('min_red', 'Track Bars', 0, 255, do_nothing)
+cv2.createTrackbar("min_blue", "Track Bars", 0, 255, do_nothing)
+cv2.createTrackbar("min_green", "Track Bars", 0, 255, do_nothing)
+cv2.createTrackbar("min_red", "Track Bars", 0, 255, do_nothing)
 
 # For maximum range
-cv2.createTrackbar('max_blue', 'Track Bars', 0, 255, do_nothing)
-cv2.createTrackbar('max_green', 'Track Bars', 0, 255, do_nothing)
-cv2.createTrackbar('max_red', 'Track Bars', 0, 255, do_nothing)
+cv2.createTrackbar("max_blue", "Track Bars", 0, 255, do_nothing)
+cv2.createTrackbar("max_green", "Track Bars", 0, 255, do_nothing)
+cv2.createTrackbar("max_red", "Track Bars", 0, 255, do_nothing)
 
 # while True:
 #     if cv2.waitKey(0):
@@ -43,15 +40,15 @@ cv2.createTrackbar('max_red', 'Track Bars', 0, 255, do_nothing)
 # Reading image with OpenCV library
 # In this way image is opened already as numpy array
 # WARNING! OpenCV by default reads images in BGR format
-image_BGR = cv2.imread('objects-to-detect.jpg')
+image_BGR = cv2.imread("objects-to-detect.jpg")
 # Resizing image in order to use smaller windows
 image_BGR = cv2.resize(image_BGR, (600, 426))
 
 # Showing Original Image
 # Giving name to the window with Original Image
 # And specifying that window is resizable
-cv2.namedWindow('Original Image', cv2.WINDOW_NORMAL)
-cv2.imshow('Original Image', image_BGR)
+cv2.namedWindow("Original Image", cv2.WINDOW_NORMAL)
+cv2.imshow("Original Image", image_BGR)
 
 # Converting Original Image to HSV
 image_HSV = cv2.cvtColor(image_BGR, cv2.COLOR_BGR2HSV)

@@ -1,7 +1,7 @@
 import sys
 
 from __init__ import main
-from errors   import ArgumentError
+from errors import ArgumentError
 
 try:
     main()

@@ -1,11 +1,12 @@
-# importing libraries 
-import speech_recognition as sr 
-import os 
+# importing libraries
+import speech_recognition as sr
+import os
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
 
 # create a speech recognition object
 r = sr.Recognizer()
+
 
 # a function that splits the audio file into chunks
 # and applies speech recognition
@@ -15,13 +16,14 @@ def get_large_audio_transcription(path):
     and apply speech recognition on each of these chunks
     """
     # open the audio file using pydub
-    sound = AudioSegment.from_wav(path)  
+    sound = AudioSegment.from_wav(path)
     # split audio sound where silence is 700 miliseconds or more and get chunks
-    chunks = split_on_silence(sound,
+    chunks = split_on_silence(
+        sound,
         # experiment with this value for your target audio file
-        min_silence_len = 500,
+        min_silence_len=500,
         # adjust this per requirement
-        silence_thresh = sound.dBFS-14,
+        silence_thresh=sound.dBFS - 14,
         # keep the silence for 1 second, adjustable as well
         keep_silence=500,
     )
@@ -30,7 +32,7 @@ def get_large_audio_transcription(path):
     if not os.path.isdir(folder_name):
         os.mkdir(folder_name)
     whole_text = ""
-    # process each chunk 
+    # process each chunk
     for i, audio_chunk in enumerate(chunks, start=1):
         # export audio chunk and save it in
         # the `folder_name` directory.
@@ -52,23 +54,23 @@ def get_large_audio_transcription(path):
     return whole_text
 
 
-
-#import library
+# import library
 import speech_recognition as sr
-#Initiаlize  reсоgnizer  сlаss  (fоr  reсоgnizing  the  sрeeсh)
+
+# Initiаlize  reсоgnizer  сlаss  (fоr  reсоgnizing  the  sрeeсh)
 r = sr.Recognizer()
 # Reading Audio file as source
 #  listening  the  аudiо  file  аnd  stоre  in  аudiо_text  vаriаble
-with sr.AudioFile('C:/Users/sharsaur/python/ML/NLP/check.wav') as source:
+with sr.AudioFile("C:/Users/sharsaur/python/ML/NLP/check.wav") as source:
     audio_text = r.listen(source)
-# recoginize_() method will throw a request error if the API is unreachable, hence using exception handling
+    # recoginize_() method will throw a request error if the API is unreachable, hence using exception handling
     try:
         # using google speech recognition
         text = r.recognize_google(audio_text)
-        print('Converting audio transcripts into text ...')
+        print("Converting audio transcripts into text ...")
         print(text)
     except:
-         print('Sorry.. run again...')
+        print("Sorry.. run again...")
 
 
 # print("whole text",get_large_audio_transcription("C:/Users/sharsaur/python/ML/NLP/check.wav"))

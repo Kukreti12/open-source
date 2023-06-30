@@ -8,18 +8,21 @@ import boto3
 import pandas as pd
 
 
-AWS_S3_BUCKET = 'aws-glue-bi-test'
-AWS_ACCESS_KEY_ID = '***'
-AWS_SECRET_ACCESS_KEY = '***'
+AWS_S3_BUCKET = "aws-glue-bi-test"
+AWS_ACCESS_KEY_ID = "***"
+AWS_SECRET_ACCESS_KEY = "***"
 
 
 s3_client = boto3.client(
     "s3",
     aws_access_key_id=AWS_ACCESS_KEY_ID,
-    aws_secret_access_key=AWS_SECRET_ACCESS_KEY
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
 )
 
-response = s3_client.get_object(Bucket=AWS_S3_BUCKET, Key="demo/release/data/etl-data/transaction/process_date=2021-05-07/part-00000-93f5a6a0-2ca6-4ebe-aca0-1b327c6ba142-c000.snappy.parquet")
+response = s3_client.get_object(
+    Bucket=AWS_S3_BUCKET,
+    Key="demo/release/data/etl-data/transaction/process_date=2021-05-07/part-00000-93f5a6a0-2ca6-4ebe-aca0-1b327c6ba142-c000.snappy.parquet",
+)
 
 status = response.get("ResponseMetadata", {}).get("HTTPStatusCode")
 
