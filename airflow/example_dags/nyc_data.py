@@ -9,6 +9,8 @@ import requests
 import pandas as pd
 import requests
 import boto3
+from minio import Minio
+from minio.error import S3Error
 
 default_args = {
     "owner": "airflow",
@@ -38,10 +40,15 @@ def get_data_postgres(**context):
         Value = year + "-" + month
         data_dict[key] = Value
         context["ti"].xcom_push(key=key, value=Value)
-        print(key, year, month)
 
 
 def download_data_nyc(**context):
+
+    client = Minio(
+        "10.10.162.201:9000",
+        access_key="xVfLGJnSiTMMV9U1s7D5",
+        secret_key="HJSqzjFQDvfLekDSTKqLsv4LKB58FbwRTlSodOzf",secure=False
+    )
     for i in ["yellow", "green", "fhv", "fhvhv"]:
         value_taxi = context["ti"].xcom_pull(task_ids="nyc_get_audit_data", key=i)
         url = "https://d37ci6vzurychx.cloudfront.net/trip-data/{}_tripdata_{}.parquet".format(
@@ -49,9 +56,12 @@ def download_data_nyc(**context):
         )
         output_file = "/mnt/shared/DFM/quarantine/{}-{}.parquet".format(i, value_taxi)
         response = requests.get(url)
-        print(output_file)
         with open(output_file, "wb") as file:
             file.write(response.content)
+        #Upload your file from DF location to the S3 bucket
+        client.fput_object(
+            "dfm", value_taxi+'.parquet', output_file,
+        )
 
 
 with DAG(
