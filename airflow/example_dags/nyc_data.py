@@ -9,8 +9,6 @@ import requests
 import pandas as pd
 import requests
 import boto3
-from minio import Minio
-from minio.error import S3Error
 
 default_args = {
     "owner": "airflow",
@@ -43,12 +41,11 @@ def get_data_postgres(**context):
 
 
 def download_data_nyc(**context):
-
-    client = Minio(
-        "10.10.162.201:9000",
-        access_key="xVfLGJnSiTMMV9U1s7D5",
-        secret_key="HJSqzjFQDvfLekDSTKqLsv4LKB58FbwRTlSodOzf",secure=False
-    )
+    s3_resource = boto3.resource('s3',
+                        endpoint_url='https://10.10.162.46:9000',
+                        aws_access_key_id='77M1DNDSRUM0WJNJIVUJ5FKCN8E4Y47OGSR7TZPJL49YM878W4T1DEFH8XH4QYJ0YJVAGDNY4OFSCYBYKIWJI1',
+                        aws_secret_access_key='98M280PJIQ7YP2FCXSKQW0ZNSLWU8A4MD20WVQFZ0K55JWVUWJDI',
+                        verify= False)
     for i in ["yellow", "green", "fhv", "fhvhv"]:
         value_taxi = context["ti"].xcom_pull(task_ids="nyc_get_audit_data", key=i)
         url = "https://d37ci6vzurychx.cloudfront.net/trip-data/{}_tripdata_{}.parquet".format(
@@ -58,10 +55,7 @@ def download_data_nyc(**context):
         response = requests.get(url)
         with open(output_file, "wb") as file:
             file.write(response.content)
-        #Upload your file from DF location to the S3 bucket
-        client.fput_object(
-            "dfm", value_taxi+'.parquet', output_file,
-        )
+        s3_resource.Bucket("dfm").upload_file(output_file,value_taxi+'.parquet')
 
 
 with DAG(
