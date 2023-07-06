@@ -28,27 +28,27 @@ def download_rates():
     data = response.json()
     df = pd.DataFrame(data)
     df.columns = map(str.lower, df.columns)
-    csv_path = "/mnt/shared/airflow-dag-result/file.csv"
+    csv_path = "/mnt/shared/DFM/file.csv"
     df.to_csv(csv_path, index=False)
     # Connect to PostgreSQL using PostgresHook
-    postgres_hook = PostgresHook(postgres_conn_id="postgres_default")
-    # Push the DataFrame to a table in PostgreSQL
-    table_name = "test1"
-    postgres_hook.insert_rows(table_name, df.values.tolist(), df.columns.tolist())
+    # postgres_hook = PostgresHook(postgres_conn_id="postgres_default")
+    # # Push the DataFrame to a table in PostgreSQL
+    # table_name = "test1"
+    # postgres_hook.insert_rows(table_name, df.values.tolist(), df.columns.tolist())
 
 
 def s3_upload():
     s3_resource = boto3.resource(
         "s3",
         endpoint_url="https://10.10.162.46:9000",
-        aws_access_key_id="7GM4BT71Q56BX55FZOCN4XF4ATVQTS0TJIPTVJIPC82KAFZLVGC5Q2ELQIDAJEORM6FWOYSL7D40ZZQC1PJZJANHXSL3LNIRAKGVM3EY2NDYAXPX3AFXS0A6F",
-        aws_secret_access_key="BNARYBWC1LSDK02S7O8VQRPHHXTD78Q6K52UZZ5XMRCXZX8K202CNE1VWTXGX4OGJ6T2WNMUX",
+        access_key_id = '77M1DNDSRUM0WJNJIVUJ5FKCN8E4Y47OGSR7TZPJL49YM878W4T1DEFH8XH4QYJ0YJVAGDNY4OFSCYBYKIWJI1'
+        secret_access_key = '98M280PJIQ7YP2FCXSKQW0ZNSLWU8A4MD20WVQFZ0K55JWVUWJDI'
         verify=False,
     )
 
     # Upload your file from DF location to the S3 bucket
     s3_resource.Bucket("landing").upload_file(
-        "/mnt/shared/airflow-dag-result/file.csv", "file.csv"
+        "/mnt/shared/DFM/file.csv", "file.csv"
     )
 
 
