@@ -38,13 +38,12 @@ def download_rates():
 
 
 def s3_upload():
-    s3_resource = boto3.resource(
-        "s3",
+    s3_resource = boto3.resource ("s3",
         endpoint_url="https://10.10.162.46:9000",
-        access_key_id = '77M1DNDSRUM0WJNJIVUJ5FKCN8E4Y47OGSR7TZPJL49YM878W4T1DEFH8XH4QYJ0YJVAGDNY4OFSCYBYKIWJI1'
-        secret_access_key = '98M280PJIQ7YP2FCXSKQW0ZNSLWU8A4MD20WVQFZ0K55JWVUWJDI'
+        access_key_id = '77M1DNDSRUM0WJNJIVUJ5FKCN8E4Y47OGSR7TZPJL49YM878W4T1DEFH8XH4QYJ0YJVAGDNY4OFSCYBYKIWJI1',
+        secret_access_key = '98M280PJIQ7YP2FCXSKQW0ZNSLWU8A4MD20WVQFZ0K55JWVUWJDI',
         verify=False,
-    )
+       )
 
     # Upload your file from DF location to the S3 bucket
     s3_resource.Bucket("landing").upload_file(
