@@ -39,13 +39,23 @@ def get_data_postgres(**context):
 
 
 def download_data_nyc(**context):
-    s3_resource = boto3.resource(
-        "s3",
-        endpoint_url="https://10.10.162.46:9000",
-        aws_access_key_id="77M1DNDSRUM0WJNJIVUJ5FKCN8E4Y47OGSR7TZPJL49YM878W4T1DEFH8XH4QYJ0YJVAGDNY4OFSCYBYKIWJI1",
-        aws_secret_access_key="98M280PJIQ7YP2FCXSKQW0ZNSLWU8A4MD20WVQFZ0K55JWVUWJDI",
-        verify=False,
-    )
+    def upload_to_s3(bucket_name, object_key, local_file_path, access_key_id, secret_access_key):
+        s3 = boto3.client('s3',
+                    endpoint_url='https://10.10.162.46:9000',
+                      aws_access_key_id=access_key_id,
+                      aws_secret_access_key=secret_access_key,
+                      verify=False)
+        try:
+            s3.upload_file(local_file_path, bucket_name, object_key)
+            print(f"File uploaded successfully: {local_file_path}")
+        except Exception as e:
+            print(f"Error uploading file: {e}")
+
+    # Specify the bucket name, object key (file path in S3), local file path, and access credentials
+    bucket_name = 'landing'
+    access_key_id = '77M1DNDSRUM0WJNJIVUJ5FKCN8E4Y47OGSR7TZPJL49YM878W4T1DEFH8XH4QYJ0YJVAGDNY4OFSCYBYKIWJI1'
+    secret_access_key = '98M280PJIQ7YP2FCXSKQW0ZNSLWU8A4MD20WVQFZ0K55JWVUWJDI'
+
     for i in ["yellow", "green", "fhv", "fhvhv"]:
         value_taxi = context["ti"].xcom_pull(task_ids="nyc_get_audit_data", key=i)
         url = "https://d37ci6vzurychx.cloudfront.net/trip-data/{}_tripdata_{}.parquet".format(
@@ -55,7 +65,7 @@ def download_data_nyc(**context):
         response = requests.get(url)
         with open(output_file, "wb") as file:
             file.write(response.content)
-        s3_resource.Bucket("dfm").upload_file(output_file, value_taxi + ".parquet")
+        upload_to_s3(bucket_name, value_taxi+'.parquet', output_file, access_key_id, secret_access_key)
 
 
 with DAG(
