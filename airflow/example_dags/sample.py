@@ -1,25 +1,15 @@
 from datetime import datetime
 from airflow import DAG
+from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 
-default_args = {
-    'owner': 'your_name',
-    'start_date': datetime(2023, 7, 6),
-}
+def print_hello():
+    return 'Hello world from first Airflow DAG!'
 
-def print_current_date():
-    current_date = datetime.now().strftime("%Y-%m-%d")
-    print(f"Current date is: {current_date}")
+dag = DAG('hello_world', description='Hello World DAG',
+          schedule_interval='0 12 * * *',
+          start_date=datetime(2017, 3, 20), catchup=False)
 
-with DAG(
-    'print_current_date_dag',
-    default_args=default_args,
-    schedule_interval='@daily',
-    catchup=False
-) as dag:
-    task = PythonOperator(
-        task_id='print_current_date_task',
-        python_callable=print_current_date
-    )
+hello_operator = PythonOperator(task_id='hello_task', python_callable=print_hello, dag=dag)
 
-    task
+hello_operator
