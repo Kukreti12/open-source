@@ -23,7 +23,7 @@ def get_data_postgres(**context):
     postgres_hook = PostgresHook(postgres_conn_id="postgres_default")
     ##get the data from the postgres table
     sql_query = """SELECT taxitype, 
-                EXTRACT(YEAR FROM new_date) as year, LPAD(EXTRACT(MONTH FROM new_date)::text, 2, '0') as month
+                CAST(EXTRACT(YEAR FROM new_date) as INTEGER), LPAD(EXTRACT(MONTH FROM new_date)::text, 2, '0') as month
                 FROM (SELECT  *, DATE((DATE_TRUNC('month', lastmonthprocessed) + INTERVAL '1 month')) AS new_date from nyc) as t"""
 
     result = postgres_hook.get_records(sql_query)
