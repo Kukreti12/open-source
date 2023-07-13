@@ -56,7 +56,7 @@ def download_data_nyc(**context):
     secret_access_key = '98M280PJIQ7YP2FCXSKQW0ZNSLWU8A4MD20WVQFZ0K55JWVUWJDI'
 
     for i in ["yellow", "green", "fhv", "fhvhv"]:
-        value_taxi = context["ti"].xcom_pull(task_ids="nyc_get_audit_data", key=i)
+        value_taxi = context["ti"].xcom_pull(task_ids="pull_month_to_be_processed", key=i)
         url = "https://d37ci6vzurychx.cloudfront.net/trip-data/{}_tripdata_{}.parquet".format(
             i, value_taxi
         )
