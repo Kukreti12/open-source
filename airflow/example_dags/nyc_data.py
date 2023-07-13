@@ -61,7 +61,7 @@ def download_data_nyc(**context):
         url = "https://d37ci6vzurychx.cloudfront.net/trip-data/{}_tripdata_{}.parquet".format(
             i, value_taxi
         )
-        output_file = "/mnt/shared/dfm/quarantine/{}-{}.parquet".format(i, value_taxi)
+        output_file = "/mnt/shared/dfm/quarantine/{}/{}-{}.parquet".format(i,i, value_taxi)
         response = requests.get(url)
         with open(output_file, "wb") as file:
             file.write(response.content)
