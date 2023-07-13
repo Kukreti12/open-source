@@ -7,7 +7,7 @@ import requests
 import pandas as pd
 import requests
 import boto3
-
+from airflow.utils.db import provide_session
 default_args = {
     "owner": "airflow",
     "email_on_failure": False,
@@ -17,9 +17,11 @@ default_args = {
     "retry_delay": timedelta(minutes=5),
 }
 
-def clear_xcom_values():
-    # Clear XCom values for the current DAG run
-    XCom.clear(key=None, execution_date=None, task_id=None, dag_id=None)
+
+
+@provide_session
+def cleanup_xcom(session=None):
+    session.query(XCom).filter(XCom.dag_id == "get_nyc_taxi_data").delete()
 
 def get_data_postgres(**context):
     # Connect to PostgreSQL using PostgresHook
@@ -85,12 +87,7 @@ with DAG(
     default_args=default_args,
     catchup=False,
 ) as dag:
-    
-    clear_xcom_task = PythonOperator(
-    task_id="clear_xcom_values",
-    python_callable=clear_xcom_values,
-    dag=dag
-    )
+
     pull_month_to_be_processed = PythonOperator(
         task_id="pull_month_to_be_processed",
         python_callable=get_data_postgres,
@@ -107,5 +104,9 @@ with DAG(
         python_callable=udpate_date_postgres,
         provide_context=True,
     )
-
-    clear_xcom_task >> pull_month_to_be_processed >> copy_data_to_s3 >> update_next_month_date_postgres
+    cleanup_xcom_task = PythonOperator(
+    task_id="cleanup_xcom",
+    python_callable=cleanup_xcom,
+    dag=dag
+    )
+    pull_month_to_be_processed >> copy_data_to_s3 >> update_next_month_date_postgres >> cleanup_xcom_task
