@@ -82,18 +82,18 @@ with DAG(
     default_args=default_args,
     catchup=False,
 ) as dag:
-    nyc_get_audit_data = PythonOperator(
+    download_nyc_taxi_to_DF = PythonOperator(
         task_id="download_nyc_taxi_to_DF",
         python_callable=get_data_postgres,
         provide_context=True,
     )
 
-    download_data_nyc = PythonOperator(
+    copy_data_to_s3 = PythonOperator(
         task_id="copy_data_to_s3",
         python_callable=download_data_nyc,
         provide_context=True,
     )
-    udpate_date_postgres = PythonOperator(
+    update_next_month_date_postgres = PythonOperator(
         task_id="update_next_month_date_postgres",
         python_callable=udpate_date_postgres,
         provide_context=True,
