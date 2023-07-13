@@ -17,6 +17,9 @@ default_args = {
     "retry_delay": timedelta(minutes=5),
 }
 
+def clear_xcom_values():
+    # Clear XCom values for the current DAG run
+    XCom.clear(key=None, execution_date=None, task_id=None, dag_id=None)
 
 def get_data_postgres(**context):
     # Connect to PostgreSQL using PostgresHook
@@ -60,7 +63,7 @@ def download_data_nyc(**context):
         url = "https://d37ci6vzurychx.cloudfront.net/trip-data/{}_tripdata_{}.parquet".format(
             i, value_taxi
         )
-        output_file = "/mnt/shared/dfm/quarantine/{}/{}-{}.parquet".format(i,i, value_taxi)
+        output_file = "/mnt/shared/dfm/quarantine/{}/{}.parquet".format(i,value_taxi)
         response = requests.get(url)
         with open(output_file, "wb") as file:
             file.write(response.content)
@@ -82,6 +85,12 @@ with DAG(
     default_args=default_args,
     catchup=False,
 ) as dag:
+    
+    clear_xcom_task = PythonOperator(
+    task_id="clear_xcom_values",
+    python_callable=clear_xcom_values,
+    dag=dag
+    )
     pull_month_to_be_processed = PythonOperator(
         task_id="pull_month_to_be_processed",
         python_callable=get_data_postgres,
@@ -99,4 +108,4 @@ with DAG(
         provide_context=True,
     )
 
-    pull_month_to_be_processed >> copy_data_to_s3 >> update_next_month_date_postgres
+    clear_xcom_task >> pull_month_to_be_processed >> copy_data_to_s3 >> update_next_month_date_postgres
