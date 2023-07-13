@@ -76,14 +76,14 @@ def udpate_date_postgres(**context):
     result = postgres_hook.run(sql_query)
 
 with DAG(
-    "get_metadata",
+    "get_nyc_taxi_data",
     start_date=datetime(2023, 3, 14),
     schedule_interval="@daily",
     default_args=default_args,
     catchup=False,
 ) as dag:
-    download_nyc_taxi_to_DF = PythonOperator(
-        task_id="download_nyc_taxi_to_DF",
+    pull_month_to_be_processed = PythonOperator(
+        task_id="pull_month_to_be_processed",
         python_callable=get_data_postgres,
         provide_context=True,
     )
@@ -99,4 +99,4 @@ with DAG(
         provide_context=True,
     )
 
-    download_nyc_taxi_to_DF >> copy_data_to_s3 >> update_next_month_date_postgres
+    pull_month_to_be_processed >> copy_data_to_s3 >> update_next_month_date_postgres
