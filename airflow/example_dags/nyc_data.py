@@ -36,8 +36,7 @@ def get_data_postgres(**context):
         Value = year + "-" + month
         data_dict[key] = Value
         context["ti"].xcom_push(key=key, value=Value)
-
-
+   
 def download_data_nyc(**context):
     def upload_to_s3(bucket_name, object_key, local_file_path, access_key_id, secret_access_key):
         s3 = boto3.client('s3',
@@ -67,6 +66,14 @@ def download_data_nyc(**context):
             file.write(response.content)
         upload_to_s3(bucket_name, "{}/{}.parquet".format(i,value_taxi), output_file, access_key_id, secret_access_key)
 
+def udpate_date_postgres(**context):
+    # Connect to PostgreSQL using PostgresHook
+    postgres_hook = PostgresHook(postgres_conn_id="postgres_default")
+    ##get the data from the postgres table
+    sql_query = """UPDATE nyc
+                   SET lastmonthprocessed  = date(lastmonthprocessed  + INTERVAL '1 month')"""
+
+    result = postgres_hook.run(sql_query)
 
 with DAG(
     "get_metadata",
@@ -76,15 +83,20 @@ with DAG(
     catchup=False,
 ) as dag:
     nyc_get_audit_data = PythonOperator(
-        task_id="nyc_get_audit_data",
+        task_id="download the NYC taxi data and push to DF filesystem",
         python_callable=get_data_postgres,
         provide_context=True,
     )
 
     download_data_nyc = PythonOperator(
-        task_id="download_data_nyc",
+        task_id="Copy data from DF to S3 object storage",
         python_callable=download_data_nyc,
         provide_context=True,
     )
+    udpate_date_postgres = PythonOperator(
+        task_id="update the next month date in postgres",
+        python_callable=udpate_date_postgres,
+        provide_context=True,
+    )
 
-    nyc_get_audit_data >> download_data_nyc
+    nyc_get_audit_data >> download_data_nyc >> udpate_date_postgres
