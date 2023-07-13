@@ -65,7 +65,7 @@ def download_data_nyc(**context):
         response = requests.get(url)
         with open(output_file, "wb") as file:
             file.write(response.content)
-        upload_to_s3(bucket_name, value_taxi+'.parquet', output_file, access_key_id, secret_access_key)
+        upload_to_s3(bucket_name, "{}/{}.parquet".format(i,value_taxi), output_file, access_key_id, secret_access_key)
 
 
 with DAG(
