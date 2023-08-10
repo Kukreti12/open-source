@@ -57,8 +57,8 @@ def download_data_nyc(**context):
 
     # Specify the bucket name, object key (file path in S3), local file path, and access credentials
     bucket_name = 'landing'
-    access_key_id = '77M1DNDSRUM0WJNJIVUJ5FKCN8E4Y47OGSR7TZPJL49YM878W4T1DEFH8XH4QYJ0YJVAGDNY4OFSCYBYKIWJI1'
-    secret_access_key = '98M280PJIQ7YP2FCXSKQW0ZNSLWU8A4MD20WVQFZ0K55JWVUWJDI'
+    access_key_id = 'QCRTMKOGJAXQBXYZVKW0P3YVVFUTF40WGGYRYI2QXF8A1M37VR5EZOVGDBBJ4SQX7SASJJTA12IF2XVXHBHQO2GSSMT6WW4BBUKSZ0WG1S5J1'
+    secret_access_key = 'E2BCPBXXGKKHSL531C5L2YYWQQ8Y5UEM8B6OY21QJYPMHU9P1UA5EZHYQ6PZQWUJTWYXR8CJ8X5LV20FSCR8D4J0HW'
 
     for i in ["yellow", "green", "fhv", "fhvhv"]:
         value_taxi = context["ti"].xcom_pull(task_ids="pull_month_to_be_processed", key=i)
