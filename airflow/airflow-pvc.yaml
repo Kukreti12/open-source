@@ -1,0 +1,22 @@
+apiVersion: v1
+
+kind: PersistentVolumeClaim
+
+metadata:
+
+  name: airflow-pvc
+
+spec:
+
+  storageClassName: mapr-edf
+
+  accessModes:
+
+    - ReadWriteMany
+
+  resources:
+
+    requests:
+
+      storage: 3Gi
+

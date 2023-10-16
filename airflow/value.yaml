@@ -1,0 +1,13 @@
+dags:
+  persistence:
+    enabled: true
+    ## the name of an existing PVC to use
+    ##
+    existingClaim: "airflow-pvc"
+    ## sub-path under `dags.persistence.existingClaim` to use
+    ##
+    subPath: ""
+    accessMode: ReadWriteMany
+    ## the size of PVC to request
+    ##
+    size: 1Gi

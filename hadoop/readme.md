@@ -1,0 +1,1 @@
+https://tecadmin.net/install-hadoop-on-ubuntu-20-04/

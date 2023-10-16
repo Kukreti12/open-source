@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: Pachyderm, Inc. <info@pachyderm.com>
+# SPDX-License-Identifier: Apache-2.0
+
+deployTarget: CUSTOM
+
+pachd:
+  storage:
+    backend: LOCAL
+    local:
+      # hostPath indicates the path on the host where the PFS metadata
+      # will be stored.  It must end in /.  It is analogous to the
+      # --host-path argument to pachctl deploy.
+      hostPath: "/mnt/mapr_nfs/df5node/pachyderm"
+      requireRoot: true
+  externalService:
+    enabled: true
+
+console:
+  service:
+    type: LoadBalancer
+
+etcd:
+  storageClass: manual
+  size: 10Gi
+
+postgresql:
+  persistence:
+    storageClass: manual
+    size: 10Gi
+
