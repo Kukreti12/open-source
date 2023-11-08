@@ -7,8 +7,8 @@ from pyspark.sql import SparkSession
 
 spark = SparkSession.builder \
     .appName("Connect to Amazon S3") \
-    .config("spark.hadoop.fs.s3a.access.key", "AKIAZU27QSEVPZJLRRLP") \
-    .config("spark.hadoop.fs.s3a.secret.key", "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") \
+    .config("spark.hadoop.fs.s3a.access.key", "") \
+    .config("spark.hadoop.fs.s3a.secret.key", "") \
     .config("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem") \
     .config("spark.hadoop.fs.s3a.endpoint", "s3.amazonaws.com") \
     .config("spark.hadoop.fs.s3a.aws.credentials.provider", "org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider") \
