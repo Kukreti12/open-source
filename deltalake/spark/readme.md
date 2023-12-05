@@ -60,6 +60,11 @@ In practice, data can change upstream in unexpected ways, so often it is in your
     ```
 ## Set up spark on windows
 1. https://medium.com/analytics-vidhya/installing-and-using-pyspark-on-windows-machine-59c2d64af76e
+2. Adding env variable to integrate with jupyter notebook
+    ```
+    PYSPARK_DRIVER_PYTHON=jupyter
+    PYSPARK_DRIVER_PYTHON_OPTS=notebook
+    ```
 #### Alternate way
 1. https://sparkbyexamples.com/pyspark/how-to-install-and-run-pyspark-on-windows/
 2. Add the env variable where python is getting executed
