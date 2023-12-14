@@ -2,6 +2,12 @@
 Apache Spark acts as the centralizing core component within the data platform. Much in the same way that the data warehouses and data lakes solved the central problem of common access to data, Spark solves the problem of both centralizing and unifying how data can be processed, at scale, across the entire data platform. 
 
 
+### Spark Architecture
+1. Distributed computing- In databricks, if we have 1 node with 4 cores then below is the stack we get
+    - Each executor has 1 JVM per node. 1 node for driver which has 1 JVM
+    - 1 Executor, 4 core/threads/slots, total 4 task can be run in parallel anytime. Also if there are 6 task then remaining 2 task will wait until slots are free.
+    - 1 executor with 4 core can run 4 task 
+2. Stages- 
 ### Apache Spark architecture
 1. Mapreduce problem
     - ![](problem.png)
