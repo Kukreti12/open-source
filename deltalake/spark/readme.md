@@ -201,10 +201,19 @@ In practice, data can change upstream in unexpected ways, so often it is in your
     ```
 
 
-## Setup spark on kubernetes
+## Setup spark on kubernetes on desktop docker
 1. Setup using helm
     ```
     helm repo add bitnami https://charts.bitnami.com/bitnami
     helm install my-release bitnami/spark --set worker.replicaCount=5
     ```
-2. 
+2. Run the spark job
+    ```
+    $EXAMPLE_JAR = kubectl exec -ti --namespace default my-release-spark-worker-0 -- find examples/jars/ -name 'spark-example*\.jar' | ForEach-Object { $_ -replace '\r' }
+    kubectl exec -ti --namespace default my-release-spark-worker-0 -- spark-submit --master spark://my-release-spark-master-svc:7077 --class org.apache.spark.examples.SparkPi $EXAMPLE_JAR 5
+    ```
+3. Port forward the sparkui to check the spark job completion
+    ```
+    kubectl port-forward --namespace default svc/my-release-spark-master-svc 80:80
+    ```
+    - Navigate to the browser `127.0.0.1:80`
