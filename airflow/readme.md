@@ -85,6 +85,26 @@ update the service to NodePort so that we can access the airflow web UI at Physi
     ```
     cd /mnt/mapr_nfs/df5node/csi/csi-pv-gpu.uavwasscdg
     ```
+
+
+### Github Sync
+
+1. Create private github repo.
+    - Create private key and public key using ssh-keygen
+        ```
+        ssh-keygen -t rsa -b 4096 -C "your-mail@gmail.com"
+        ```
+2. [Navigate to the GitHub repository, click into Settings, and find ‘Deploy keys’:](https://hungngph.medium.com/airflow-on-kubernetes-with-helm-c795545325dc)
+3. Create ssh key secret in kubernetes
+    ```
+    kubectl apply -f [secret.yaml](secret.yaml)
+    ```
+4. Edit the gitsync section in [value.yaml](value.yaml) and upgrade the helm release
+    ```
+    helm upgrade airflow apache-airflow/airflow --namespace airflow --values values.yaml
+    ```
+
+    
 ### Installation using docker
 
 * Build a docker image from the Dockerfile in the current directory (airflow-materials/airflow-basic)  and name it airflow-basic
