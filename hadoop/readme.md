@@ -1,1 +1,5 @@
-https://tecadmin.net/install-hadoop-on-ubuntu-20-04/
+### Cloudera
+1. HDFS HA
+2. HDFS balancer
+3. Disk and coutn quota
+4. Canary test

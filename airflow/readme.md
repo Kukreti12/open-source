@@ -1,11 +1,9 @@
-
-
-
-
 ### DAG
 1. Directed cyclic graph. It doesnot have any loop 
    - ![](dag'.png)  
 
+2. Workflow
+    - ![arch](image.png)
 
 ### Operators
 1. There are three types of operators
@@ -104,6 +102,9 @@ update the service to NodePort so that we can access the airflow web UI at Physi
     helm upgrade airflow apache-airflow/airflow --namespace airflow --values values.yaml
     ```
 
+
+### Operators
+
     
 ### Installation using docker
 
@@ -192,4 +193,6 @@ airflow dags list-runs -d example_python_operator
     ```
     airflow tasks test example_python_operator print_the_context 2021-01-01
     ```
+
+
 
