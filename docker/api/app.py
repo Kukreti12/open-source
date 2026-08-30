@@ -5,9 +5,7 @@ import psycopg2
 app = FastAPI()
 
 DATABASE_URL = os.getenv(
-    "DATABASE_URL",
-    "postgresql://postgres:password@host.docker.internal:5432/mydb"
-)
+    "DATABASE_URL")
 
 @app.get("/")
 def health():
