@@ -1,1 +1,3 @@
-https://www.opsmx.com/blog/argo-cd-installation-into-kubernetes-using-helm-or-manifest/
+## Install argocd
+1. https://argo-cd.readthedocs.io/en/stable/getting_started/
+2. 
