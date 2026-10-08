@@ -1,10 +1,14 @@
 import os
+import logging
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from openai import OpenAI
 import psycopg2
 from dotenv import load_dotenv
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -105,6 +109,7 @@ def ask_ollama(question: str = "What is Artificial Intelligence?"):
             "answer": response.choices[0].message.content
         }
     except Exception as e:
+        logger.error(f"Ollama call failed: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Ollama call failed: {e}")
 
 
@@ -136,6 +141,7 @@ def ask_ollama_post(question: Question):
             "answer": response.choices[0].message.content
         }
     except Exception as e:
+        logger.error(f"Ollama call failed: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Ollama call failed: {e}")
 
 
