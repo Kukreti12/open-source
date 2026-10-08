@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./docker/api
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: "postgresql://postgres:test@host.docker.internal:5432/postgres"
+      BASE_URL: "http://host.docker.internal:11434/v1"
+      API_KEY: "ollama"
+      MODEL: "qwen:4b"
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8000
+
+  ui:
+    build:
+      context: ./docker/UI
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: "http://api:8000"
+    depends_on:
+      - api
+
+volumes:
+  ollama_data:

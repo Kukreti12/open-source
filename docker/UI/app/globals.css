@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.chat-container {
+  @apply flex flex-col h-screen bg-white;
+}
+
+.message {
+  @apply mb-4 flex;
+}
+
+.message.user {
+  @apply justify-end;
+}
+
+.message.assistant {
+  @apply justify-start;
+}
+
+.message-content {
+  @apply px-4 py-2 rounded-lg max-w-xs lg:max-w-md;
+}
+
+.message.user .message-content {
+  @apply bg-blue-500 text-white rounded-bl-none;
+}
+
+.message.assistant .message-content {
+  @apply bg-gray-200 text-gray-900 rounded-tl-none;
+}
+
+.loading {
+  @apply inline-block animate-pulse;
+}
+
+.thinking {
+  @apply text-gray-500 italic;
+}

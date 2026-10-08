@@ -1,0 +1,6 @@
+apiVersion: v2
+name: learn-ui
+description: Production-ready AI Chatbot UI built with Next.js
+type: application
+version: 1.0.0
+appVersion: "1.0.0"

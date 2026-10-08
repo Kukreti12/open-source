@@ -1,0 +1,52 @@
+replicaCount: 1
+
+image:
+  repository: ollama/ollama
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 11434
+  targetPort: 11434
+  name: ollama
+
+app:
+  name: ollama
+
+# Environment variables
+env:
+  OLLAMA_HOST: "0.0.0.0:11434"
+
+# Resource limits for GPU/CPU intensive workload
+resources:
+  limits:
+    cpu: "2000m"
+    memory: "4Gi"
+  requests:
+    cpu: "1000m"
+    memory: "2Gi"
+
+# Health checks
+livenessProbe:
+  enabled: true
+  path: /api/tags
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+readinessProbe:
+  enabled: true
+  path: /api/tags
+  initialDelaySeconds: 20
+  periodSeconds: 5
+
+# Optional: Add GPU support
+# nodeSelector:
+#   accelerator: nvidia-gpu
+
+# Persistent storage for Ollama models
+persistence:
+  enabled: false
+  size: 50Gi
+  # storageClassName: standard
+  # mountPath: /root/.ollama

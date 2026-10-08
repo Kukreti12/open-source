@@ -4,11 +4,11 @@ metadata:
   name: {{ .Values.service.name | default .Values.app.name }}
   namespace: {{ .Release.Namespace }}
 spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      protocol: TCP
+      name: api
   selector:
     app: {{ .Values.app.name }}
-  ports:
-    - protocol: TCP
-      port: {{ .Values.service.port }}
-      targetPort: {{ .Values.service.targetPort }}
-      name: http
-  type: {{ .Values.service.type }}

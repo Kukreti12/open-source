@@ -1,43 +1,41 @@
 replicaCount: 1
 
 image:
-  repository: open-source-api
+  repository: open-source-ui
   tag: latest
   pullPolicy: Never  # Using local Docker image
 
 service:
-  type: ClusterIP
-  port: 8000
-  targetPort: 8000
-  name: fastapi
+  type: NodePort
+  port: 3000
+  targetPort: 3000
+  nodePort: 30000  # Accessible at http://localhost:30000
+  name: ui
 
 app:
-  name: fastapi
+  name: ui
 
 # Environment variables
 env:
-  BASE_URL: "http://ollama:11434/v1"
-  API_KEY: "ollama"
-  MODEL: "qwen:4b"
+  NEXT_PUBLIC_API_URL: "http://fastapi:8000"
 
-# Resource limits
 resources:
   limits:
-    cpu: "1000m"
-    memory: "1Gi"
-  requests:
     cpu: "500m"
     memory: "512Mi"
+  requests:
+    cpu: "250m"
+    memory: "256Mi"
 
 # Health checks
 livenessProbe:
   enabled: true
-  path: /health
+  path: /
   initialDelaySeconds: 10
   periodSeconds: 10
 
 readinessProbe:
   enabled: true
-  path: /health
+  path: /
   initialDelaySeconds: 5
   periodSeconds: 5
