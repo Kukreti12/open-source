@@ -19,6 +19,7 @@ export default function Home() {
   ])
   const [loading, setLoading] = useState(false)
   const [apiUrl, setApiUrl] = useState('')
+  const [conversationId, setConversationId] = useState<string | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -37,17 +38,23 @@ export default function Home() {
     setMessages((prev) => [...prev, userMessage])
     setLoading(true)
 
+    console.log('Sending with conversation_id:', conversationId)
     try {
       const response = await fetch(`${apiUrl}/ask`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({
+          text,
+          conversation_id: conversationId
+        }),
       })
 
       if (response.ok) {
         const data = await response.json()
+        console.log('Setting conversation ID to:', data.conversation_id)
+        setConversationId(data.conversation_id)
         const assistantMessage: Message = {
           role: 'assistant',
           content: data.answer || 'Sorry, I couldn\'t generate a response.',
@@ -78,6 +85,7 @@ export default function Home() {
         content: 'Hello! I\'m your AI assistant. How can I help you today?',
       },
     ])
+    setConversationId(null)
   }
 
   return (
